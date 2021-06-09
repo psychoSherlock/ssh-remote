@@ -6,9 +6,9 @@ from time import sleep as wait
 import sys
 
 def startSSH():
-    print("Starting local ssh server")
+    print("💀 Starting local ssh server")
     shell('sudo service ssh start')
-    print("Local ssh server started")
+    print("☠️  Local ssh server started")
     return
 
 
@@ -18,31 +18,32 @@ def sendData():
     ngrokServer = ngrokServer.stdout.decode() # Decoding subprocess output
     data = str(ngrokServer)
 
-    print(f'Sending data {data}')
+    print(f'💀 Sending data {data}')
     shell(f'curl -H "Content-Type: text/html; charset=UTF-8" -X POST --data "{data}" https://api.cl1p.net/55hserver ')
     print(f'Data Sent....')
 
     return
 
 def stopSSH():
-    print('Stopping local ssh server...')
+    print('👻 Stopping local ssh server...')
     shell('sudo service ssh stop')
     
-    print("Clearing remote data..") # For clearing left alone ngrok url
+    print("👻 Clearing remote data..") # For clearing left alone ngrok url
     run('curl -s https://api.cl1p.net/55hserver > /dev/null', shell=True)
     
-    print('Killing ngrok and stopping port forward')
+    print('👻 Killing ngrok and stopping port forward')
     shell("killall ngrok")
+    print("💩 Quitting..")
     return
 
 try:
     startSSH()
 
     # Enabling port forwd on another terminal
-    print('Starting port forward..')
+    print('☠️  Starting port forward..')
     shell('x-terminal-emulator -e ./ngrok.sh')
-    print('Port Forward enabled..')
-    wait(2)
+    print('🤖 Port Forward enabled..')
+    wait(4)
 
 
     # Sending ngrok url
@@ -50,13 +51,13 @@ try:
     ngrokServer = ngrokServer.stdout.decode() # Decoding subprocess output
     data = str(ngrokServer)
 
-    print(f'Sending data {data}')
+    print(f'☠️  Sending data {data}')
     shell(f'curl -s -H "Content-Type: text/html; charset=UTF-8" -X POST --data "{data}" https://api.cl1p.net/55hserver ')
-    print(f'Data Sent....')
+    print(f'☠️  Data Sent....')
 
 
 
-    input('Started port forwarding...\nPress CTRL + C to quit \n')
+    input('💩 Started port forwarding...\nPress CTRL + C to quit \n')
     stopSSH()
     sys.exit()
 

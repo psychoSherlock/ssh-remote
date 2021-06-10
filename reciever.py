@@ -1,5 +1,4 @@
 from subprocess import run as shell
-import substring
 from urllib.parse import urlparse
 from sys import exit
 
